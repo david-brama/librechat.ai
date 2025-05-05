@@ -24,7 +24,6 @@ Essentially, any setting within this values file can be modified in two main way
 - The first method involves creating a separate override file and specifying it when executing the install command.
 - The second method involves directly setting each variable with the installation command itself. If you're planning to change numerous variables, it's advisable to use the override file approach to avoid an overly lengthy command. Conversely, for fewer adjustments, directly setting variables with the installation command might be more convenient.
 
-
 The very end of the file sets some of [environment variables](/docs/configuration/dotenv) of the application, that should look familiar if you deployed the application before. It is the base configuration without any sensitive data. 
 
 ```
@@ -48,6 +47,17 @@ The very end of the file sets some of [environment variables](/docs/configuratio
 ```
 
 However, like the comment says, you could have a look at which environment variables are generally available to be modified.
+
+[yaml configuration](/docs/configuration/librechat_yaml) can be added using the yamlconfig entry, for example:
+```
+  yamlconfig: |
+      version: 1.2.0
+      interface:
+        termsOfService:
+          modalAcceptance: true
+          modalTitle: "Terms of Service"
+          modalContent: "By using this service you agree to the terms of service. The content you input is your responsibility and you agree to not use this service for illegal activities."
+```
 
 Because with only these variables set the application won't start correctly. We need to set some more variables, but those contain sensitive data. We will show 2 different ways to make use of Kubernetes features in order to configure those in a secure way. 
 
